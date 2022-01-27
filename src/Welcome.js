@@ -37,19 +37,20 @@ const getusers =(token) =>{
     <div>
 
 <div>
-       <AppBar position="static" style={{background:"royalblue"}}>
+       <AppBar position="static" style={{background:"gray"}}>
             {/* When signout the cookie is removed */}
             <Toolbar>
-              <Button color="inherit" onClick={()=>{
+
+               {/* If cookie is there with that one can get all users list */}
+               <Button color="inherit" style={{marginRight:"auto"}} onClick={()=>
+                    getusers(Cookies.get('login-token-node'))} >
+                  GET USERS
+                </Button>
+
+              <Button color="inherit"  onClick={()=>{
                   Cookies.remove('login-token-node')
                   history.push("/Login")}}
                   >Sign out</Button>
-
-                  {/* If cookie is there with that one can get all users list */}
-                  <Button variant='contained'  style={{background:"lightslategray"}}
-                onClick={()=>getusers(Cookies.get('login-token-node'))} >
-                  GET USERS
-                </Button>
 
             </Toolbar>
         </AppBar>
