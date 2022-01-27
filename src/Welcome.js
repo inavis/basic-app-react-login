@@ -1,9 +1,14 @@
 import Button from '@mui/material/Button';
 import Cookies from 'js-cookie'
 import { useState } from 'react';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export function Welcome() {
+    const history = useHistory()
 
     const [display,setdisplay]=useState("");
 
@@ -30,12 +35,26 @@ const getusers =(token) =>{
  
   return (
     <div>
-      <div style={{textAlign:"center"}}>
-      <Button variant='contained'  style={{background:"lightslategray"}}
-       onClick={()=>getusers(Cookies.get('login-token-node'))} >
-        GET USERS
-      </Button>
-      </div>
+
+<div>
+       <AppBar position="static" style={{background:""}}>
+            {/* When signout the cookie is removed */}
+            <Toolbar>
+              <Button color="inherit" onClick={()=>{
+                  Cookies.remove('login-token-node')
+                  history.push("/Login")}}
+                  >Sign out</Button>
+            </Toolbar>
+            {/* If cookie is there with that one can get all users list */}
+            <Toolbar>
+                      <Button variant='contained'  style={{background:"lightslategray"}}
+                onClick={()=>getusers(Cookies.get('login-token-node'))} >
+                  GET USERS
+                </Button>
+            </Toolbar>
+        </AppBar>
+       </div>
+
 
       <div >
           <div className='box'>
@@ -47,4 +66,5 @@ const getusers =(token) =>{
     </div>
   );
 }
+
 
