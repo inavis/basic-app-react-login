@@ -37,7 +37,7 @@ const getusers =(token) =>{
     <div>
 
 <div>
-       <AppBar position="static" style={{background:""}}>
+       <AppBar position="static" style={{background:"royalblue"}}>
             {/* When signout the cookie is removed */}
             <Toolbar>
               <Button color="inherit" onClick={()=>{
@@ -50,7 +50,7 @@ const getusers =(token) =>{
                 onClick={()=>getusers(Cookies.get('login-token-node'))} >
                   GET USERS
                 </Button>
-                
+
             </Toolbar>
         </AppBar>
        </div>
